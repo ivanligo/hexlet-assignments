@@ -22,13 +22,13 @@ public class Application {
 
     // BEGIN
     @Autowired
-    private UserProperties userProperties;
+    private UserProperties userInfo;
 
     @GetMapping("/admins")
-    public List<String> indexAdm() {
-        List<String> admins = userProperties.getAdmins();
+    public List<String> indexAdmins() {
+        List<String> admins = userInfo.getAdmins();
         admins = admins.stream()
-                .sorted()
+                .sorted((s1, s2) -> Integer.compare(s1.length(), s2.length()))
                 .toList();
         return admins;
     }
