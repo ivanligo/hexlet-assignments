@@ -25,12 +25,13 @@ public class Application {
     private UserProperties userInfo;
 
     @GetMapping("/admins")
-    public List<String> indexAdmins() {
+    public List<User> indexAdmins() {
         List<String> admins = userInfo.getAdmins();
-        admins = admins.stream()
-                .sorted((s1, s2) -> Integer.compare(s1.length(), s2.length()))
+        List<User> admUsers = users.stream()
+                .filter(user -> admins.stream().anyMatch(admin -> admin.equals(user.getEmail())))
+                .sorted((u1, u2) -> Long.compare(u1.getId(), u2.getId()))
                 .toList();
-        return admins;
+        return admUsers;
     }
     // END
 
