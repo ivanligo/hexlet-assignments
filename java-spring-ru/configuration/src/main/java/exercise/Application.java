@@ -29,7 +29,7 @@ public class Application {
         List<String> admins = userInfo.getAdmins();
         List<User> admUsers = users.stream()
                 .filter(user -> admins.stream().anyMatch(admin -> admin.equals(user.getEmail())))
-                .sorted((u1, u2) -> Long.compare(u1.getId(), u2.getId()))
+                .sorted((u1, u2) -> Long.compare(u2.getId(), u1.getId()))
                 .toList();
         return admUsers;
     }
