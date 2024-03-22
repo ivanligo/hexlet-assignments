@@ -25,11 +25,12 @@ public class Application {
     private UserProperties userInfo;
 
     @GetMapping("/admins")
-    public List<User> indexAdmins() {
+    public List<String> indexAdmins() {
         List<String> admins = userInfo.getAdmins();
-        List<User> admUsers = users.stream()
+        List<String> admUsers = users.stream()
                 .filter(user -> admins.stream().anyMatch(admin -> admin.equals(user.getEmail())))
                 .sorted((u1, u2) -> Long.compare(u2.getId(), u1.getId()))
+                .map(User::getName)
                 .toList();
         return admUsers;
     }
