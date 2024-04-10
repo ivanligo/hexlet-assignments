@@ -12,8 +12,8 @@ import org.springframework.stereotype.Component;
 // BEGIN
 @Component
 public class JWTUtils {
-
-    private static JwtEncoder encoder;
+    @Autowired
+    private JwtEncoder encoder;
 
     public String generateToken(String username) {
         Instant now = Instant.now();
